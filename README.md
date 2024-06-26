@@ -1,4 +1,4 @@
-Integrated System (Flutter Project) with barcode scanner.
+Integrated System (Flutter Project) with barcode scanner(Smartphone Camera).
 These System include from raw material purchasing until to finance with barcode system scanner.
 I made this system for compony purpose
 
