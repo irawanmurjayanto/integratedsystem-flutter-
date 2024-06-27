@@ -37,7 +37,7 @@ class _MainMenuState extends State<MainMenu> {
               right: BorderSide(width: 5,color:Colors.grey),
               ),
             ),
-            child: Text("User Name : Irawan",style: TextStyle(color: Colors.white),),
+            child: Text("User Name :"+UserName.uname,style: TextStyle(color: Colors.white),),
           ),
           //List Menu
 
