@@ -28,27 +28,32 @@ class _List_MasterBarangState extends State<List_MasterBarang_form> {
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
-      appBar: AppBar(title: Text("Item Master List"),),
+      appBar: AppBar(title: Text("Item Master List",style: TextStyle(color: Colors.white),),
+              backgroundColor: Colors.black54,
+      ),
+      
+      
       body: 
-    Column(
-      children: [
+   
 
 
- 
- 
-Cari_ItemMasterBarang(),
-
-
-    
-    
+ Container(
+  height: MediaQuery.of(context).size.height/1,
+decoration: BoxDecoration(
+  image: DecorationImage(image: AssetImage("assets/images/back1.png"),fit: BoxFit.fill)
+),
+child: Column(
+  children: [
+Cari_ItemMasterBarang(),    
 SizedBox(height: 10,),
 refresh_datamastbarang(),
+  ],
+),
+ ),
+ 
+
     
 
-      ],
-    )
-      
-      
     );
   }
 
@@ -60,6 +65,7 @@ child:
 
 Container(
 height: MediaQuery.of(context).size.height/3,
+ 
 child: 
 
 RefreshIndicator(
@@ -82,9 +88,14 @@ RefreshIndicator(
                         margin: EdgeInsets.only(left: 5,right: 5,bottom: 5),
                         padding: EdgeInsets.all(5),
                         decoration: BoxDecoration(
-                        color: Colors.black38,
+                        gradient: LinearGradient(
+                          begin: Alignment.centerLeft,
+                          end: Alignment.centerRight,
+                          colors: [Colors.blueGrey,Colors.blueAccent]
+                          ),
+                        
                         borderRadius: BorderRadius.circular(5),
-                        image:DecorationImage(image: AssetImage('assets/images/back2.png'),fit:BoxFit.fill)  
+                        border: Border.all(color: Colors.orange,width: 2,style: BorderStyle.solid),
                         ),
                        child:InkWell(
                         splashColor: Colors.pink,  
@@ -144,12 +155,14 @@ Container(
 
 Widget Cari_ItemMasterBarang(){
      
-  return Padding(
+  return Container(
      padding: EdgeInsets.all(5),
-    // decoration: BoxDecoration(
-    //   border: Border.all(style: BorderStyle.solid),
-    //   borderRadius: BorderRadius.circular(10)
-    // ),
+    decoration: BoxDecoration(
+    gradient: LinearGradient(
+      begin: Alignment.centerLeft,
+      end: Alignment.bottomRight,
+      colors: [Colors.white,Colors.cyan])
+    ),
     child: Form(child: 
     
     TextFormField(
