@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:barcode_inventory_new/component/list/list_masterbarang.dart';
 import 'package:barcode_inventory_new/component/message/getwarning.dart';
 import 'package:barcode_inventory_new/component/data/server.dart';
 import 'package:barcode_inventory_new/modeldata/modeldata.dart';
@@ -21,7 +22,7 @@ import 'package:http/http.dart' as http;
 
 class MasterBarang extends StatefulWidget {
   
-   final String? idno;
+  final String? idno;
   final String? kode;
   final String? nama;
   final String? barcode;
@@ -86,18 +87,25 @@ class _MasterBarangState extends State<MasterBarang> {
     //tipe=ModalRoute.of(context)!.settings.arguments as String;
     //setMessage(idno!, context);
    // final response=await Provider.of<Alldata>(context).List_MasterBarangById(idno!);
-     _kode.text=kode!;
-     _nama.text=nama!;
-     _barcodecode.text=barcode!;
-      setState(() {
-           txttampungunit=unititem;
-     txttampungroup=groupitem;
-      });
+     //   setMessage(groupitem!, context);
+  //      setState(() {
+  //      _kode.text=kode!;
+  //    _nama.text=nama!;
+  //    _barcodecode.text=barcode!;    
+  //   txttampungunit=unititem;
+  //    txttampungroup=groupitem;
+  //  // _datedoc.text=DateFormat('dd-MMM-yyyy').format(DateTime.parse(datedoc!) ) ;
+  //    _Noted.text=notes!;
+
+  //     });
   
-     _datedoc.text=datedoc!;
-     _Noted.text=notes!;
+    setState(() {
+   
+ // _datedoc.text=DateFormat('dd-MMM-yyyy').format(DateTime.parse(datedoc!) ) ;
+   
 
-
+      });
+   //setMessage(datedoc!, context);
 
     super.didChangeDependencies();
   }
@@ -138,56 +146,85 @@ Future takePciture(ImageSource media) async
 }
 
 Future <void> SaveMaster() async{
-  final isValid=_form.currentState!.validate();
+  //final isValid=_form.currentState!.validate();
+ 
+   //  setMessage("x", context);
+     
+    
 
 
-  
-  if (!isValid)
-  {
-    return;
-  }
-
-// if(image!=null)
-// {
-
-// }else
-// {
-  
-try{
+    //  String baseimage2='';    
 
  
- List<int> imageBytes = image!.readAsBytesSync();
+      // if (image==null)
+      // {
+      //     baseimage2=pict_desc!;
+      // }else
+      // {
+      // List<int> imageBytes = image!.readAsBytesSync();
+      // String baseimage = base64Encode(imageBytes);
+      // String baseimage2=baseimage==null?'x':baseimage;
+      // }
+      
+      if (image==null)
+      {
+        String baseimage2=pict_desc!+'&kosong';
+       // setMessage(txttampungroup.toString(), context);
+           await Provider.of<Alldata>(context,listen: false).SaveMaster(baseimage2,context,
+       _kode.text, _nama.text, _barcodecode.text, txttampungroup.toString(), _datedoc.text, txttampungunit.toString(), _Noted.text);      
+       
+      } else
+      { 
+      List<int> imageBytes = image!.readAsBytesSync();
       String baseimage = base64Encode(imageBytes);
       String baseimage2=baseimage==null?'x':baseimage;
+       await Provider.of<Alldata>(context,listen: false).SaveMaster(baseimage2,context,
+      _kode.text, _nama.text, _barcodecode.text, txttampungroup.toString(), _datedoc.text, txttampungunit.toString(), _Noted.text);
 
-  await Provider.of<Alldata>(context,listen: false).SaveMaster(baseimage2,context,
-    _kode.text, _nama.text, _barcodecode.text, txttampungroup.toString(), _datedoc.text, txttampungunit.toString(), _Noted.text
-    );
+      }
+  
+       Navigator.pushReplacement(context,MaterialPageRoute(builder: (context) => List_MasterBarang_form(),));
+  
+      
+  
 
+ 
 
-} 
- catch(e)
- {
-  print(e);
- }   
-// }
-
-//Navigator.of(context).pop();
 }
    
 
+
+
+  getUpdateData() async{
+
+    //setMessage(groupitem!, context);
+
+    setState(() {
+       _kode.text=kode!;
+     _nama.text=nama!;
+     _barcodecode.text=barcode!;    
+    txttampungunit=unititem;
+     txttampungroup=groupitem;
+     _datedoc.text=DateFormat('dd-MMM-yyyy').format(DateTime.parse(datedoc!) ) ;
+     _Noted.text=notes!;
+
+      });
+  }
+
   @override
   void initState() {
+   
     Provider.of<Alldata>(context,listen: false).listGroupitem();
     Provider.of<Alldata>(context,listen: false).listUnit();
-
+    getUpdateData();
+    
    
    // setMessage(id!, context);
     
-    setState(() {
-     // _kode.text=ambildate;
-      _datedoc.text=ambildate;
-    });
+    // setState(() {
+    //  // _kode.text=ambildate;
+    //   _datedoc.text=ambildate;
+    // });
     super.initState();
   }
 
@@ -304,10 +341,13 @@ try{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-           appBar: AppBar(title: Text("Master Barang"),
+           appBar: AppBar(title: Text("Master Barang",style: TextStyle(color: Colors.white),),
+           backgroundColor: Colors.black54,
+           foregroundColor: Colors.white,
+           
            actions: [
             IconButton(onPressed: () {
-              Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => MasterBarang(idno: null, tipe: 'edit', kode: '', nama: '', barcode: '', groupitem: 'Item Group Detail', unititem: 'Unit Item Detail', datedoc: '', notes: '', pict_desc: null)));
+              Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => MasterBarang(idno: null, tipe: 'edit', kode: null, nama:null, barcode: null, groupitem: 'Item Group Detail', unititem: 'Unit Item Detail', datedoc: '', notes: null, pict_desc: null)));
             }, icon: Icon(Icons.add,size: 30,)),
             
             IconButton(onPressed: () {
@@ -622,7 +662,7 @@ Widget PickBarcode(){
           lastDate: DateTime(2090)
           );
           if (pickkeddate!=null){
-            final String formatteddate=DateFormat("dd-MM-yyyy").format(pickkeddate);
+            final String formatteddate=DateFormat("dd-MMM-yyyy").format(pickkeddate);
             setState(() {
             _datedoc.text=formatteddate;  
             });

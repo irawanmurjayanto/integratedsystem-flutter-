@@ -25,16 +25,37 @@ class _List_MasterBarangState extends State<List_MasterBarang_form> {
     final _cari=TextEditingController();
     final _carinode=FocusNode();
  
+ @override
+  void didChangeDependencies() {
+   // setMessage("Didchange", context);
+   // _refreshMasterBarang();
+    // TODO: implement didChangeDependencies
+    super.didChangeDependencies();
+  }
+
+   @override
+  void initState() {
+    _refreshMasterBarang();
+    // TODO: implement initState
+    //Provider.of<Alldata>(context,listen: false).List_MasterBaranang(carikata);
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
       appBar: AppBar(title: Text("Item Master List",style: TextStyle(color: Colors.white),),
               backgroundColor: Colors.black54,
+              foregroundColor: Colors.white,
+        actions: [
+          IconButton(onPressed: () {
+            Navigator.push(context,MaterialPageRoute(builder: (context) => MasterBarang(idno: null, tipe: 'edit', kode: null, nama: null, barcode: '', groupitem: 'Item Group Detail', unititem: 'Unit Item Detail', datedoc: '', notes: '', pict_desc: null)));
+          }, icon: Icon(Icons.add))
+        ],
       ),
       
       
-      body: 
-   
+      body: SingleChildScrollView(
+   child: 
 
 
  Container(
@@ -53,7 +74,7 @@ refresh_datamastbarang(),
  
 
     
-
+      )
     );
   }
 
@@ -64,7 +85,7 @@ return SingleChildScrollView(
 child: 
 
 Container(
-height: MediaQuery.of(context).size.height/3,
+height: MediaQuery.of(context).size.height/1.2,
  
 child: 
 
@@ -88,10 +109,11 @@ RefreshIndicator(
                         margin: EdgeInsets.only(left: 5,right: 5,bottom: 5),
                         padding: EdgeInsets.all(5),
                         decoration: BoxDecoration(
+                         // image: DecorationImage(image: AssetImage('assets/images/listdata.png'),fit: BoxFit.cover),
                         gradient: LinearGradient(
                           begin: Alignment.centerLeft,
                           end: Alignment.centerRight,
-                          colors: [Colors.blueGrey,Colors.blueAccent]
+                          colors: [Colors.white,Colors.grey]
                           ),
                         
                         borderRadius: BorderRadius.circular(5),
@@ -116,7 +138,7 @@ RefreshIndicator(
                         
 children: [
       
- Text(item.listmasterbarangglobal[i].kode!,style: TextStyle(color: Colors.white),),
+ Text(item.listmasterbarangglobal[i].kode!,style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),),
  //jump to 2nd column
  SizedBox(width: 10),
 
@@ -127,7 +149,7 @@ Container(
 
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
-      Text(item.listmasterbarangglobal[i].nama!+"("+item.listmasterbarangglobal[i].unititem!+")",style: TextStyle(color: Colors.white),),
+      Text(item.listmasterbarangglobal[i].nama!+"("+item.listmasterbarangglobal[i].unititem!+")",style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),),
  
  
  
@@ -156,13 +178,15 @@ Container(
 Widget Cari_ItemMasterBarang(){
      
   return Container(
-     padding: EdgeInsets.all(5),
+    margin: EdgeInsets.only(left: 5,right: 5,bottom: 5,top: 10),
+    // padding: EdgeInsets.all(5),
     decoration: BoxDecoration(
-    gradient: LinearGradient(
-      begin: Alignment.centerLeft,
-      end: Alignment.bottomRight,
-      colors: [Colors.white,Colors.cyan])
-    ),
+      image: DecorationImage(image: AssetImage("assets/images/sch1.png"),fit: BoxFit.cover),
+    // gradient: LinearGradient(
+    //   begin: Alignment.centerLeft,
+    //   end: Alignment.bottomRight,
+    //   colors: [Colors.white,Colors.cyan])
+     ),
     child: Form(child: 
     
     TextFormField(
@@ -172,7 +196,7 @@ Widget Cari_ItemMasterBarang(){
       
       decoration: InputDecoration(
         
-        hintText: "Item Master Search",
+        label: Text("Item Master Search",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
         border:OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(6))),
       ),
       controller: _cari,

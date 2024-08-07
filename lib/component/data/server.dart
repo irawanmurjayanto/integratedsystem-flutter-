@@ -1,3 +1,3 @@
 class NamaServer{
-static String server="https://xxxx.com";
+static String server="https://irawan.angsoft.info/";
 }

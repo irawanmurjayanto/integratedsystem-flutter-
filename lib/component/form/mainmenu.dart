@@ -1,9 +1,17 @@
 import 'package:barcode_inventory_new/component/form/masterbarang.dart';
 import 'package:barcode_inventory_new/component/list/list_masterbarang.dart';
+import 'package:barcode_inventory_new/component/list/list_purchaserequest.dart';
 import 'package:barcode_inventory_new/component/message/getwarning.dart';
+import 'package:barcode_inventory_new/login.dart';
 import 'package:barcode_inventory_new/modeldata/modeldata.dart';
+import 'package:barcode_inventory_new/provider/alldata.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:get_storage/get_storage.dart';
+import 'dart:async';
+import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 
 class MainMenu extends StatefulWidget {
   const MainMenu({super.key});
@@ -13,6 +21,38 @@ class MainMenu extends StatefulWidget {
 }
 
 class _MainMenuState extends State<MainMenu> {
+
+  // getSession() async {
+  //   await GetStorage.init();
+  // }
+
+  final box=GetStorage();
+  // @override
+  // void initState() {
+  //   //getSession();
+  //   // TODO: implement initState
+  //   super.initState();
+  // }
+
+
+  getAnnoucement() async{
+    Timer.periodic(new Duration(seconds: 1), (timer) {
+   debugPrint(timer.tick.toString());
+});
+  }
+
+  
+  @override
+  void initState() {
+    // TODO: implement initState
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitDown,
+      DeviceOrientation.portraitUp,
+  ]);
+    Provider.of<Alldata>(context,listen: false).getMsgAnc();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -37,236 +77,324 @@ class _MainMenuState extends State<MainMenu> {
               right: BorderSide(width: 5,color:Colors.grey),
               ),
             ),
-            child: Text("User Name :"+UserName.uname,style: TextStyle(color: Colors.white),),
+            child: Text("User Name : "+box.read('u_name'),style: TextStyle(color: Colors.white),),
           ),
           //List Menu
 
-          //Menu 1 List Item Master
+          //box besar menu
           Container(
-            margin: EdgeInsets.all(5),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                color: Colors.blueAccent,
-                border: Border.all(width: 2,style: BorderStyle.solid,color: Colors.orange),
-              ),
-              child: Row(children: [
+            margin: EdgeInsets.all(10),
+            padding: EdgeInsets.all(10),
+            width: double.infinity,
+            height: 200,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(5),
+              border: Border.all(width: 1,style: BorderStyle.solid),
+              color: Colors.white,
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black26,
+                  offset: Offset(2, 2),
+                  blurRadius: 2,
+                  spreadRadius: 3
+                )
+              ]
+            ),
 
-                //but 1
-                InkWell(
-                  onTap: () {
-                    Navigator.push(context,MaterialPageRoute(builder: (context) => List_MasterBarang_form()));
-                  },
-                  child:
-                  Row(
-                    children: [
-                      Icon(Icons.toc,size: 40,),  
-                      SizedBox(width: 10,),
-                       Text("Item Master",style: TextStyle(color: Colors.white,fontSize: 16),),
-                      SizedBox(width: MediaQuery.of(context).size.width/3,) 
-                    ],
-                  )
+
+            //menu detailly
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
                  
-                ),
-               
-                
-               
-              
-              
-              ],
-              
-              )
-
-          ),
-
-
-          //Menu 2 Purchase Request
-          Container(
-            margin: EdgeInsets.only(left: 5,right: 5,top: 0,bottom: 5),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                color: Colors.blueAccent,
-                border: Border.all(width: 2,style: BorderStyle.solid,color: Colors.orange),
-              ),
-              child: Row(children: [
-
-                //but 1
-                InkWell(
-                  onTap: () {
-                    setMessage("OK", context);
-                  },
-                  child:
-                  Row(
-                    children: [
-                      Icon(Icons.quora,size: 40,),  
-                      SizedBox(width: 10,),
-                       Text("Purchase Request",style: TextStyle(color: Colors.white,fontSize: 16),),
-                      SizedBox(width: MediaQuery.of(context).size.width/3,) 
+                 //menu line 1
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                            Container(
+                  height: 65,
+                  width: 65,
+                  padding: EdgeInsets.all(5),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    border: Border.all(width: 0.5),
+                    borderRadius: BorderRadius.circular(5)
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [          
+                      Image.asset("assets/images/menu1.png",scale: 2.8,fit: BoxFit.cover,),
+                      SizedBox(height: 5,),
+                       Text("Item Master",style: TextStyle(fontSize: 6,fontWeight: FontWeight.bold),),  
                     ],
-                  )
-                 
-                ),
-               
-                
-               
-              
-              
-              ],
-              
-              )
+                  )),
 
-          ),
 
-          //Menu 3 Purchase order
-          Container(
-            margin: EdgeInsets.only(left: 5,right: 5,top: 0,bottom: 5),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                color: Colors.blueAccent,
-                border: Border.all(width: 2,style: BorderStyle.solid,color: Colors.orange),
-              ),
-              child: Row(children: [
-
-                //but 1
-                InkWell(
-                  onTap: () {
-                    setMessage("OK", context);
-                  },
-                  child:
-                  Row(
-                    children: [
-                      Icon(Icons.sell,size: 40,),  
-                      SizedBox(width: 10,),
-                       Text("Purchase Order",style: TextStyle(color: Colors.white,fontSize: 16),),
-                      SizedBox(width: MediaQuery.of(context).size.width/3,) 
+                    //menu Purchase Request
+                Container(
+                  height: 65,
+                  width: 65,
+                  padding: EdgeInsets.all(5),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    border: Border.all(width: 0.5),
+                    borderRadius: BorderRadius.circular(5)
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [          
+                      Image.asset("assets/images/menu2.png",scale: 2.8,fit: BoxFit.cover,),
+                      SizedBox(height: 5,),
+                       Text("Purchase Request",style: TextStyle(fontSize: 6,fontWeight: FontWeight.bold),),  
                     ],
-                  )
-                 
-                ),
-               
-                
-               
-              
-              
-              ],
-              
-              )
+                  )),
 
-          ),
 
-           //Menu 4 Good Receive
-          Container(
-            margin: EdgeInsets.only(left: 5,right: 5,top: 0,bottom: 5),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                color: Colors.blueAccent,
-                border: Border.all(width: 2,style: BorderStyle.solid,color: Colors.orange),
-              ),
-              child: Row(children: [
-
-                //but 1
-                InkWell(
-                  onTap: () {
-                    setMessage("OK", context);
-                  },
-                  child:
-                  Row(
-                    children: [
-                      Icon(Icons.fmd_good,size: 40,),  
-                      SizedBox(width: 10,),
-                       Text("Good Receive",style: TextStyle(color: Colors.white,fontSize: 16),),
-                      SizedBox(width: MediaQuery.of(context).size.width/3,) 
+                    
+                    //menu Purchase Order
+                Container(
+                  height: 65,
+                  width: 65,
+                  padding: EdgeInsets.all(5),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    border: Border.all(width: 0.5),
+                    borderRadius: BorderRadius.circular(5)
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [          
+                      Image.asset("assets/images/menu3.png",scale: 2.8,fit: BoxFit.cover,),
+                      SizedBox(height: 5,),
+                       Text("Purchase Order",style: TextStyle(fontSize: 6,fontWeight: FontWeight.bold),),  
                     ],
-                  )
-                 
-                ),
-               
-                
-               
-              
-              
-              ],
-              
-              )
+                  )),
 
-          ),
-
-//Menu 5 Sales Order
-          Container(
-            margin: EdgeInsets.only(left: 5,right: 5,top: 0,bottom: 5),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                color: Colors.blueAccent,
-                border: Border.all(width: 2,style: BorderStyle.solid,color: Colors.orange),
-              ),
-              child: Row(children: [
-
-                //but 1
-                InkWell(
-                  onTap: () {
-                    setMessage("OK", context);
-                  },
-                  child:
-                  Row(
-                    children: [
-                      Icon(Icons.point_of_sale_sharp,size: 40,),  
-                      SizedBox(width: 10,),
-                       Text("Sales Order",style: TextStyle(color: Colors.white,fontSize: 16),),
-                      SizedBox(width: MediaQuery.of(context).size.width/3,) 
+                     
+                    //menu Good Receive
+                Container(
+                  height: 65,
+                  width: 65,
+                  padding: EdgeInsets.all(5),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    border: Border.all(width: 0.5),
+                    borderRadius: BorderRadius.circular(5)
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [          
+                      Image.asset("assets/images/menu4.png",scale: 2.8,fit: BoxFit.cover,),
+                      SizedBox(height: 5,),
+                       Text("Good receive",style: TextStyle(fontSize: 6,fontWeight: FontWeight.bold),),  
                     ],
-                  )
-                 
-                ),
+                  ))  
+
+                  ],
+                ) , 
                
-                
-               
               
-              
-              ],
-              
-              )
 
-          ),
+                  SizedBox(height: 10,),
 
-          //Menu 5 Invoice
-          Container(
-            margin: EdgeInsets.only(left: 5,right: 5,top: 0,bottom: 5),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                color: Colors.blueAccent,
-                border: Border.all(width: 2,style: BorderStyle.solid,color: Colors.orange),
-              ),
-              child: Row(children: [
-
-                //but 1
-                InkWell(
-                  onTap: () {
-                    setMessage("OK", context);
-                  },
-                  child:
-                  Row(
-                    children: [
-                      Icon(Icons.pin_invoke_outlined,size: 40,),  
-                      SizedBox(width: 10,),
-                       Text("Invoice",style: TextStyle(color: Colors.white,fontSize: 16),),
-                      SizedBox(width: MediaQuery.of(context).size.width/3,) 
+                     //menu line2
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                            Container(
+                  height: 65,
+                  width: 65,
+                  padding: EdgeInsets.all(5),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    border: Border.all(width: 0.5),
+                    borderRadius: BorderRadius.circular(5)
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [          
+                      Image.asset("assets/images/menu5.png",scale: 2.8,fit: BoxFit.cover,),
+                      SizedBox(height: 5,),
+                       Text("Output",style: TextStyle(fontSize: 6,fontWeight: FontWeight.bold),),  
                     ],
-                  )
-                 
-                ),
-               
-                
-               
-              
-              
+                  )),
+
+
+                    //menu Purchase Request
+                Container(
+                  height: 65,
+                  width: 65,
+                  padding: EdgeInsets.all(5),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    border: Border.all(width: 0.5),
+                    borderRadius: BorderRadius.circular(5)
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [          
+                      Image.asset("assets/images/menu6.png",scale: 2.8,fit: BoxFit.cover,),
+                      SizedBox(height: 5,),
+                       Text("Sales Order",style: TextStyle(fontSize: 6,fontWeight: FontWeight.bold),),  
+                    ],
+                  )),
+
+
+                    
+                    //menu Purchase Order
+                Container(
+                  height: 65,
+                  width: 65,
+                  padding: EdgeInsets.all(5),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    border: Border.all(width: 0.5),
+                    borderRadius: BorderRadius.circular(5)
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [          
+                      Image.asset("assets/images/menu7.png",scale: 2.8,fit: BoxFit.cover,),
+                      SizedBox(height: 5,),
+                       Text("Return",style: TextStyle(fontSize: 6,fontWeight: FontWeight.bold),),  
+                    ],
+                  )),
+
+                     
+                    //menu Good Receive
+                Container(
+                  height: 65,
+                  width: 65,
+                  padding: EdgeInsets.all(5),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    border: Border.all(width: 0.5),
+                    borderRadius: BorderRadius.circular(5)
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [          
+                      Image.asset("assets/images/menu8.png",scale: 2.8,fit: BoxFit.cover,),
+                      SizedBox(height: 5,),
+                       Text("Transfer",style: TextStyle(fontSize: 6,fontWeight: FontWeight.bold),),  
+                    ],
+                  ))  
+
+                  ],
+                )  
               ],
-              
-              )
-
+            ),
           ),
-
           
+
+
+           SizedBox(height: 20,)  ,
+
+            //annoucement
+
+           Container(
+            margin: EdgeInsets.all(10),
+            width: double.infinity,
+            height: 150,
+
+
+            decoration: BoxDecoration(
+              color: Colors.white,
+              border: Border.all(width: 1),
+
+            ),
+            child: 
+            Column(
+              children: [
+                SizedBox(height: 5,),
+                Container(                  
+                  child: Text('Announcement'),
+                ),
+
+                Container(  
+                  width: double.infinity,
+                  height: 90, 
+                  margin: EdgeInsets.all(10),
+                  padding: EdgeInsets.all(5),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5),
+                    border: Border.all(style: BorderStyle.solid,width: 1)
+                  ),               
+                  child: getMsg_Anc()
+                )
+
+              ],
+            ),
+           ), 
+
+            SizedBox(height: 20,)  ,
+
+          Container(
+            width: 200,
+            child: 
+            
+            ElevatedButton(onPressed: () {
+                 box.remove('u_name');
+                 Navigator.push(context, MaterialPageRoute(builder: (context) => Login(),));
+               }, child:
+               Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(Icons.logout),
+                  SizedBox(width: 5,),
+                  Text("Log Out",style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),)
+                ],
+               ))
+          ),
+          SizedBox(height: 10,),
+
+           
+
         ]
         ),
+    );
+  }
+
+  Widget getMsg_Anc(){
+    return Container(
+      child: 
+      FutureBuilder(future: Provider.of<Alldata>(context,listen:false).getMsgAnc(),
+       builder: (context, snapshot) {
+         if (snapshot.connectionState==ConnectionState.waiting)
+         {
+          return Center(child: CircularProgressIndicator(),);
+         }else
+         {
+          return Consumer<Alldata>(builder: (context, prov_getmsg_anc, child) {
+
+            return ListView.builder(
+              itemCount: prov_getmsg_anc.getmsganc_global.length,
+              itemBuilder: (context, i) {
+                return Container
+                (  
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(prov_getmsg_anc.getmsganc_global[i].tgl_rec!,style: TextStyle(fontSize: 8,fontWeight: FontWeight.bold),),
+                    
+                    Text(prov_getmsg_anc.getmsganc_global[i].message!,style: TextStyle(fontSize: 8,fontWeight: FontWeight.bold),),
+                    SizedBox(height: 5,),
+                  ],
+                ),  
+                );
+              
+            },);
+            
+          },);
+         }
+       },
+       
+       ),
+      
     );
   }
 }
