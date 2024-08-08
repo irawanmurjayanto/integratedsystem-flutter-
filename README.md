@@ -1,3 +1,3 @@
 # barcode_inventory_new
 
-A new Flutter project.
+Integrated System (Flutter Project) with barcode scanner(Smartphone Camera) and backend server mysql/php API. These System include from raw material purchasing until to finance with barcode system scanner. I made this system for compony purpose.These Project still undergoing development.And I'll upload the next script according the progress development.
