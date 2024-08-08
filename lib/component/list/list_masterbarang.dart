@@ -5,6 +5,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter/services.dart';
+import 'package:audioplayers/audioplayers.dart';
 
 class List_MasterBarang_form extends StatefulWidget {
   const List_MasterBarang_form({super.key});
@@ -22,8 +24,9 @@ class _List_MasterBarangState extends State<List_MasterBarang_form> {
   final String id="1";
   final String tipe="edit";
   final String carikata="";
-    final _cari=TextEditingController();
-    final _carinode=FocusNode();
+  final _cari=TextEditingController();
+  final _carinode=FocusNode();
+  final player = AudioPlayer();  
  
  @override
   void didChangeDependencies() {
@@ -49,7 +52,11 @@ class _List_MasterBarangState extends State<List_MasterBarang_form> {
         actions: [
           IconButton(onPressed: () {
             Navigator.push(context,MaterialPageRoute(builder: (context) => MasterBarang(idno: null, tipe: 'edit', kode: null, nama: null, barcode: '', groupitem: 'Item Group Detail', unititem: 'Unit Item Detail', datedoc: '', notes: '', pict_desc: null)));
-          }, icon: Icon(Icons.add))
+          }, icon: Icon(Icons.add)),
+
+          IconButton(onPressed: () {
+           player.play(AssetSource('assets/audio/error.wav'));
+          }, icon: Icon(Icons.music_note))
         ],
       ),
       

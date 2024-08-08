@@ -115,7 +115,9 @@ class _MainMenuState extends State<MainMenu> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                            Container(
+                  InkWell(
+                  child:     
+                  Container(
                   height: 65,
                   width: 65,
                   padding: EdgeInsets.all(5),
@@ -132,9 +134,16 @@ class _MainMenuState extends State<MainMenu> {
                        Text("Item Master",style: TextStyle(fontSize: 6,fontWeight: FontWeight.bold),),  
                     ],
                   )),
+                  onTap: () {
+                     Navigator.push(context,MaterialPageRoute(builder: (context) => List_MasterBarang_form()));
+                  },
+                  ),
 
 
                     //menu Purchase Request
+                InkWell(
+                  child: 
+                   
                 Container(
                   height: 65,
                   width: 65,
@@ -152,7 +161,10 @@ class _MainMenuState extends State<MainMenu> {
                        Text("Purchase Request",style: TextStyle(fontSize: 6,fontWeight: FontWeight.bold),),  
                     ],
                   )),
-
+                  onTap: () {
+                     Navigator.push(context, MaterialPageRoute(builder: (context) => List_PurchaseRequest_form(),));
+                  },
+                  ),
 
                     
                     //menu Purchase Order
