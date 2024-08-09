@@ -7,6 +7,10 @@ import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/services.dart';
 import 'package:audioplayers/audioplayers.dart';
+// import 'package:just_audio/just_audio.dart';
+// //mport 'package:audio_session/audio_session.dart';
+// //import 'package:rxdart/rxdart.dart';
+ 
 
 class List_MasterBarang_form extends StatefulWidget {
   const List_MasterBarang_form({super.key});
@@ -27,6 +31,12 @@ class _List_MasterBarangState extends State<List_MasterBarang_form> {
   final _cari=TextEditingController();
   final _carinode=FocusNode();
   final player = AudioPlayer();  
+  // final player2 = AudioPlayer();
+  // getsound() async{
+  // final duration = await player.setAsset(           // Load a URL
+  //    'assets/audio/error.wav');  
+  //    player.play();               // Schemes: (https: | file: | asset: )
+  // }
  
  @override
   void didChangeDependencies() {
@@ -55,7 +65,8 @@ class _List_MasterBarangState extends State<List_MasterBarang_form> {
           }, icon: Icon(Icons.add)),
 
           IconButton(onPressed: () {
-           player.play(AssetSource('assets/audio/error.wav'));
+          player.play(AssetSource('audio/bell.mpeg'));
+       // getsound();
           }, icon: Icon(Icons.music_note))
         ],
       ),

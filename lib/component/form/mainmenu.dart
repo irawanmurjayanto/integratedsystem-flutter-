@@ -36,7 +36,7 @@ class _MainMenuState extends State<MainMenu> {
 
 
   getAnnoucement() async{
-    Timer.periodic(new Duration(seconds: 5), (timer) {
+    Timer.periodic(new Duration(seconds: 150), (timer) {
    debugPrint(timer.tick.toString());
    Provider.of<Alldata>(context,listen: false).getMsgAnc();
 });
@@ -45,7 +45,7 @@ class _MainMenuState extends State<MainMenu> {
   
   @override
   void initState() {
-    getAnnoucement();
+    //getAnnoucement();
     // TODO: implement initState
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitDown,
