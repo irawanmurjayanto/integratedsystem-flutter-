@@ -1,4 +1,5 @@
 import 'package:barcode_inventory_new/component/data/seriapp.dart';
+import 'package:barcode_inventory_new/component/message/getwarning.dart';
 import 'package:barcode_inventory_new/provider/alldata.dart';
 import 'package:barcode_inventory_new/register.dart';
 // import 'package:flutter/foundation.dart';
@@ -139,6 +140,7 @@ class _LoginState extends State<Login> {
                      
                         ElevatedButton(onPressed: () {    
 
+                           getStatusInet(context); 
                            Provider.of<Alldata>(context,listen: false).getUserPass(context, _user.text ,_pass.text);  
 
                     }, child: Text("Submit")),

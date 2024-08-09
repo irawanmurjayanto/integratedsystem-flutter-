@@ -14,13 +14,25 @@ import 'package:get/get.dart';
 
 import 'package:get_storage/get_storage.dart';
 
+import 'dart:developer' as developer;
+
+import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:flutter/services.dart';
+
 
 
 class Alldata with  ChangeNotifier {
 List<Group_Item> _groupitem=[];
 List<Group_Item> get groupitemglobal=>_groupitem;
 bool isLoading=false;
- 
+
+  //connectivity internet
+
+  
+
+  
+
+
 //File? image;
 
 //Drop List Group item
