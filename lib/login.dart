@@ -41,7 +41,7 @@ class _LoginState extends State<Login> {
   @override
   void initState() {
     getSession();
-    EasyLoading.init();
+
     passWordVisible=true;
     super.initState();
   }
@@ -140,8 +140,7 @@ class _LoginState extends State<Login> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                        children: [
                      
-                        ElevatedButton(onPressed: () {  
-
+                        ElevatedButton(onPressed: (){  
                            EasyLoading.show(status: 'Processing... ') ;
                            getStatusInet(context); 
                            Provider.of<Alldata>(context,listen: false).getUserPass(context, _user.text ,_pass.text);  

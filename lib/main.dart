@@ -12,6 +12,7 @@ import 'package:provider/provider.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -46,15 +47,17 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      
        home: Login(),
        routes:{
                '/ListMasterBarang':(ctx) => List_MasterBarang_form(), 
                      
        },
        color: Colors.amber,
-      
+       builder: EasyLoading.init(),  
         
     );
+    
   }
 }
 
