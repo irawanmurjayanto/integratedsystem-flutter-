@@ -10,6 +10,7 @@ import 'package:provider/provider.dart';
 import 'dart:io';
 import 'dart:async';
 import 'package:get_storage/get_storage.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -40,6 +41,7 @@ class _LoginState extends State<Login> {
   @override
   void initState() {
     getSession();
+    EasyLoading.init();
     passWordVisible=true;
     super.initState();
   }
@@ -138,10 +140,12 @@ class _LoginState extends State<Login> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                        children: [
                      
-                        ElevatedButton(onPressed: () {    
+                        ElevatedButton(onPressed: () {  
 
+                           EasyLoading.show(status: 'Processing... ') ;
                            getStatusInet(context); 
                            Provider.of<Alldata>(context,listen: false).getUserPass(context, _user.text ,_pass.text);  
+                           EasyLoading.dismiss();
 
                     }, child: Text("Submit")),
                     
