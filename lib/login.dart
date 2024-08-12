@@ -144,7 +144,7 @@ class _LoginState extends State<Login> {
                            EasyLoading.show(status: 'Processing... ') ;
                            getStatusInet(context); 
                            Provider.of<Alldata>(context,listen: false).getUserPass(context, _user.text ,_pass.text);  
-                           EasyLoading.dismiss();
+                        //   EasyLoading.dismiss();
 
                     }, child: Text("Submit")),
                     

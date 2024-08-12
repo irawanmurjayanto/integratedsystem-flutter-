@@ -13,6 +13,7 @@ import 'package:path_provider/path_provider.dart';
 //import 'package:flutter_pdfview/flutter_pdfview.dart';
 import 'package:flutter/material.dart';
 import 'dart:math';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
  
  
 
@@ -41,6 +42,7 @@ Future screenToPdf(String fileName,Uint8List screenShot) async {
   //await Share.shareXFiles(([XFile(imagePath.path)]));
   await Share.shareXFiles(([XFile(pdfFile.path)]));
   //await Share.share([pdfFile.path]);
+  EasyLoading.dismiss();
 }
 
 
@@ -88,6 +90,7 @@ await Printing.layoutPdf(
   //await Share.shareXFiles(([XFile(imagePath.path)]));
   //await Share.shareXFiles(([XFile(pdfFile.path)]));
   //await Share.share([pdfFile.path]);
+  EasyLoading.dismiss();
 }
 
 Future screenToImage(String fileName,Uint8List screenShot) async {
@@ -115,6 +118,7 @@ Future screenToImage(String fileName,Uint8List screenShot) async {
   await Share.shareXFiles(([XFile(imagePath.path)]));
  // await Share.shareXFiles(([XFile(pdfFile.path)]));
   //await Share.share([pdfFile.path]);
+  EasyLoading.dismiss();
 }
 
 

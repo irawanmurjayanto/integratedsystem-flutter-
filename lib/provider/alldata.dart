@@ -18,6 +18,7 @@ import 'dart:developer' as developer;
 
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 
 
@@ -449,6 +450,7 @@ notifyListeners();
           //  }
 
             notifyListeners();
+            EasyLoading.dismiss();
   }
 
 

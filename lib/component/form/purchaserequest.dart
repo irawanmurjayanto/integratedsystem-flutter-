@@ -18,6 +18,7 @@ import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'dart:io';
 import 'dart:async';
 import 'package:flutter/services.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 class PurchaseRequest_form extends StatefulWidget {
   
@@ -453,6 +454,7 @@ Provider.of<Alldata>(context,listen: false).getList_Dept();
       foregroundColor: Colors.white,
       actions: [
         IconButton(onPressed: () {
+          EasyLoading.show(status: 'Processing');
          Navigator.push(context, MaterialPageRoute(builder: (context) => InAppWebViewExampleScreen(pr_no: pr_no!)));
         }, icon: Icon(Icons.print,size: 35,)),
 

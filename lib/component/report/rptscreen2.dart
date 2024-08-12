@@ -17,6 +17,7 @@ import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'package:printing/printing.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 class InAppWebViewExampleScreen extends StatefulWidget {
 
@@ -74,6 +75,7 @@ class _InAppWebViewExampleScreenState extends State<InAppWebViewExampleScreen> {
 
   @override
   void initState() {
+    EasyLoading.dismiss();
     super.initState();
   }
 
@@ -89,14 +91,15 @@ class _InAppWebViewExampleScreenState extends State<InAppWebViewExampleScreen> {
         actions: [
           IconButton(onPressed: ()  {
              
-                  final  filename=DateTime.now().microsecondsSinceEpoch;  
+                EasyLoading.show(status: 'Processing..');
+               final  filename=DateTime.now().microsecondsSinceEpoch;  
                screenToPdf("Rpt"+filename.toString(), screenshotBytes!);
             
 
           }, icon: Icon(Icons.picture_as_pdf_sharp,size: 30,)) , 
 
           IconButton(onPressed: ()  {
-             
+                EasyLoading.show(status: 'Processing..');
                final  filename=DateTime.now().microsecondsSinceEpoch;  
                screenToImage("Rpt"+filename.toString(), screenshotBytes!);
             
@@ -105,8 +108,8 @@ class _InAppWebViewExampleScreenState extends State<InAppWebViewExampleScreen> {
           SizedBox(width: 5,),
 
               IconButton(onPressed: ()  async {
-             
-                final  filename=DateTime.now().microsecondsSinceEpoch;  
+             EasyLoading.show(status: 'Processing..');
+             final  filename=DateTime.now().microsecondsSinceEpoch;  
              screenToPrint("Rpt"+filename.toString(), screenshotBytes!);
             
 

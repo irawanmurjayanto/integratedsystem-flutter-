@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 
 void setMessage(String pesan,BuildContext context){
@@ -43,11 +44,13 @@ void setWarning(String pesan,BuildContext context){
     if (connectivityResult.contains(ConnectivityResult.mobile)) {
    //  setWarning("Mobile Connection lost,please wait..", context);
      //return ;
+     
     } else if (connectivityResult.contains(ConnectivityResult.wifi)) {
     // setWarning("Wifi Connection lost,please wait...", context);
      
     }else
     {
+      EasyLoading.dismiss();
       setWarning("Internet Connection lost,please wait...", context);
       return;
     }
