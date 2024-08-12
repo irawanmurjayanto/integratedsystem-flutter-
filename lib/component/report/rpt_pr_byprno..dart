@@ -2,7 +2,6 @@
 
 import 'package:barcode_inventory_new/component/message/getwarning.dart';
 import 'package:barcode_inventory_new/component/report/pdfcreate.dart';
-import 'package:barcode_inventory_new/component/report/webview_pr.dart';
 import 'package:barcode_inventory_new/provider/alldata.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

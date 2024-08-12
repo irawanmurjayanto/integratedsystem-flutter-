@@ -3,8 +3,6 @@ import 'package:barcode_inventory_new/component/report/rpt_pr_byprno..dart';
 import 'package:barcode_inventory_new/component/report/rptscreen.dart';
 import 'package:barcode_inventory_new/component/report/rptscreen2.dart';
 import 'package:barcode_inventory_new/component/report/rptscreen3.dart';
-import 'package:barcode_inventory_new/component/report/webview_pr.dart';
-import 'package:barcode_inventory_new/component/report/webview_pr_pdf.dart';
 import 'package:barcode_inventory_new/main.dart';
 // import 'package:barcode_inventory_new/component/report/rpt_pr_byprno.dart';
 import 'package:barcode_inventory_new/provider/alldata.dart';

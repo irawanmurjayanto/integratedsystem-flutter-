@@ -15,7 +15,7 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 
-//irawanmurjayanto 2024 
+//irawanmurjayanto 2024 Integrated Program 
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
