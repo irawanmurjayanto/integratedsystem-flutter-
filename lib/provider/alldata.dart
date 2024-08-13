@@ -483,7 +483,26 @@ notifyListeners();
 
  
  
+  List<Cust_POS> _getCustPOS=[];
+  List<Cust_POS> get getCustPOS_Global=>_getCustPOS;
 
+  Future <void> getDataCustPOS() async {
+    var url=Uri.parse(NamaServer.server+"tests/flutter/crude_2/inventorynew.php");
+    final response=await http.post(
+      url,
+      body: {
+        'tipe':'cust_pos',
+      }
+      );
+
+      if (response.statusCode==200)
+      {
+        final json =jsonDecode(response.body)['data'] as List;
+        final newData=json.map((e) => Cust_POS.fromJson(e)).toList();
+        _getCustPOS=newData;
+      }
+      notifyListeners();
+  }
 
 
 }

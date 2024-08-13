@@ -1,4 +1,5 @@
 import 'package:barcode_inventory_new/component/form/masterbarang.dart';
+import 'package:barcode_inventory_new/component/form/pos.dart';
 import 'package:barcode_inventory_new/component/list/list_masterbarang.dart';
 import 'package:barcode_inventory_new/component/list/list_purchaserequest.dart';
 import 'package:barcode_inventory_new/component/message/getwarning.dart';
@@ -83,13 +84,14 @@ class _MainMenuState extends State<MainMenu> {
             child: Text("User Name : "+box.read('u_name'),style: TextStyle(color: Colors.white),),
           ),
           //List Menu
-
+           
+         
           //box besar menu
           Container(
             margin: EdgeInsets.all(10),
             padding: EdgeInsets.all(10),
             width: double.infinity,
-            height: 200,
+            height: 210,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(5),
               border: Border.all(width: 1,style: BorderStyle.solid),
@@ -104,7 +106,7 @@ class _MainMenuState extends State<MainMenu> {
               ]
             ),
 
-
+            child:SingleChildScrollView(
             //menu detailly
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -259,7 +261,7 @@ class _MainMenuState extends State<MainMenu> {
 
 
                     
-                    //menu Purchase Order
+                    //menu Return
                 Container(
                   height: 65,
                   width: 65,
@@ -279,7 +281,7 @@ class _MainMenuState extends State<MainMenu> {
                   )),
 
                      
-                    //menu Good Receive
+                    //menu Transfer
                 Container(
                   height: 65,
                   width: 65,
@@ -296,17 +298,58 @@ class _MainMenuState extends State<MainMenu> {
                       SizedBox(height: 5,),
                        Text("Transfer",style: TextStyle(fontSize: 6,fontWeight: FontWeight.bold),),  
                     ],
-                  ))  
+                  )),  
 
+
+                
                   ],
+                ),
+
+                 SizedBox(height: 10,),
+
+                Row(
+                 children: [
+                  InkWell(
+
+                  child: 
+                    Container(
+                   
+                  height: 65,
+                  width: 65,
+                  padding: EdgeInsets.all(5),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    border: Border.all(width: 0.5),
+                    borderRadius: BorderRadius.circular(5)
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [          
+                      Image.asset("assets/images/menu9.png",scale: 2.8,fit: BoxFit.cover,),
+                      SizedBox(height: 5,),
+                       Text("POS",style: TextStyle(fontSize: 6,fontWeight: FontWeight.bold),),  
+                    ],
+                  )),
+                  onTap: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => POS_Sales(),));
+                  }, 
+                  ),
+                 ],   
+
                 )  
+               
+                       //menu POS
+               
+
               ],
             ),
+            ),
           ),
+           
           
 
 
-           SizedBox(height: 20,)  ,
+           SizedBox(height: 10)  ,
 
             //annoucement
 

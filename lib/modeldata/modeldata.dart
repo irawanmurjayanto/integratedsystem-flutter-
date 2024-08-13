@@ -170,3 +170,25 @@ List_MasterBarang({ this.id,this.kode,this.nama,this.barcode,this.unititem,this.
     return Msg_anc_data(idno: json['idno'], message: json['message'], tgl_rec: json['tgl_rec']);
    }
   }
+
+  class Cust_POS {
+    String?idno;
+    String?no_hp;
+    String?nama_cust;
+    String?alamat;
+
+    Cust_POS({ this.idno,this.no_hp,this.nama_cust,this.alamat});
+
+    factory Cust_POS.fromJson(Map<String,dynamic>json)
+      {
+        return Cust_POS(
+          idno:json['idno'],
+          no_hp: json['no_hp'],
+          nama_cust: json['nama_cust'],
+          alamat: json['alamat'],
+          );
+      }
+     
+    }
+
+
