@@ -430,12 +430,14 @@ notifyListeners();
               if (_newData['message']=='no')
               {
                 setMessage("Use/Password Invalid", context);
+                EasyLoading.dismiss();
                 return;  
               } 
 
               if (_newData['message']=='x')
               {
                 setMessage("You must be registered first", context);
+                EasyLoading.dismiss();
                 return;
               } 
               

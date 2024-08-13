@@ -141,6 +141,12 @@ class _LoginState extends State<Login> {
                        children: [
                      
                         ElevatedButton(onPressed: (){  
+
+                           if ((_user.text.length==0) ||(_pass.text.length==0))
+                           {
+                            setMessage("User Name/Password must be filled", context);
+                            return;
+                           } 
                            EasyLoading.show(status: 'Processing... ') ;
                            getStatusInet(context); 
                            Provider.of<Alldata>(context,listen: false).getUserPass(context, _user.text ,_pass.text);  
