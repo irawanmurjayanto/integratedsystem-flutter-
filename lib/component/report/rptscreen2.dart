@@ -23,35 +23,29 @@ import 'package:get_storage/get_storage.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:syncfusion_flutter_xlsio/xlsio.dart' hide Column;
 
+ 
+import 'package:share_plus/share_plus.dart';
+import 'package:printing/printing.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter/foundation.dart'; 
+
+
+import 'dart:io';
+//import 'dart:js';
+import 'dart:typed_data';
+import 'package:pdf/pdf.dart';
+import 'package:pdf/widgets.dart ' as pw;
+import 'package:path_provider/path_provider.dart';
+import 'package:intl/intl.dart';
+import 'dart:math';
+import 'package:collection/collection.dart';
+
 class InAppWebViewExampleScreen extends StatefulWidget {
 
 final String pr_no;
 InAppWebViewExampleScreen({Key?key,required this.pr_no}):super(key: key);
 
 
-// Future<void> _convertImageToPDF(screenShot) async {
- 
-  
-
-// //Create a new PDF document.
-// final PdfDocument document = PdfDocument();
-// //Read image data.
-// final Uint8List imageData = File(screenShot).readAsBytesSync();
-// //Load the image using PdfBitmap.
-// final PdfBitmap image = PdfBitmap(imageData);
-// //Draw the image to the PDF page.
-// document.pages
-//     .add()
-//     .graphics
-//     .drawImage(image, const Rect.fromLTWH(0, 0, 500, 200));
-// // Save the document.
-
-// File('ImageToPDF.pdf').writeAsBytes(await document.save());
-// // Dispose the document.
-// document.dispose();
-
-
-//   }
 
   @override
   _InAppWebViewExampleScreenState createState() =>
@@ -76,39 +70,112 @@ class _InAppWebViewExampleScreenState extends State<InAppWebViewExampleScreen> {
   final box=GetStorage();
 
  
-  //  Future <void> getExcelData(int results) async{
 
-  //             //Creating a workbook.
-  //         final Workbook workbook = Workbook();
-  //         //Accessing via index
-  //         final Worksheet sheet = workbook.worksheets[0];
-  //         const String excelFile = 'test_download';
+  List<int> jum=[];
+  int hit2=0;  
+  getJum() async{
+    Provider.of<Alldata>(context,listen: false).getDetail_PR_Manual(pr_no!);
+    final prov=Provider.of<Alldata>(context,listen: false);
+      final int hit =prov.data_manual_prglobal.length;
+      
+    setState(() {
+       hit2=hit;
+    });
+    
+    setMessage(hit.toString(), context);
+  }
 
-  //      for (var i = 0; i < results.length; i++) {
-  //               sheet.getRangeByIndex(i + 5, 1).setText(results[i][0]);
-  //               sheet.getRangeByIndex(i + 5, 2).setText(results[i][3]['Maths'][0].toString());
-  //               sheet.getRangeByIndex(i + 5, 3).setText(results[i][3]['English'][0].toString());
-  //               sheet.getRangeByIndex(i + 5, 4).setText(results[i][3]['Kiswahili'][0].toString());
-  //               sheet.getRangeByIndex(i + 5, 5).setText(results[i][3]['Physics'][0].toString());
-  //               sheet.getRangeByIndex(i + 5, 6).setText(results[i][3]['Biology'][0].toString());
-  //               sheet.getRangeByIndex(i + 5, 7).setText(results[i][3]['Chemistry'][0].toString());
-  //               sheet.getRangeByIndex(i + 5, 8).setText(results[i][3]['Geography'][0].toString());
-  //               sheet.getRangeByIndex(i + 5, 9).setText(results[i][3]['Spanish'][0].toString());
-  //               sheet.getRangeByIndex(i + 5, 10).setText(results[i][3]['Total'][0].toString());
-  //             }
+  Future <void> getJum2() async{
+    Consumer<Alldata>(builder: (context, prov, child) {
+      return ListView.builder(
+        itemCount: prov.data_manual_prglobal.length,
+        itemBuilder: (context, i) {
+          
+      },);
+    },);
+  }
 
-  //  }
+  getRefresh_Rpt_PR(String pr_nox) async {
+    EasyLoading.show(status: "Processing..");
+  await Provider.of<Alldata>(context,listen: false).getDetail_PR_Manual(pr_nox);
+  
+    final prov=Provider.of<Alldata>(context,listen: false);
+      final int hit =prov.data_manual_prglobal.length;
+      
+    
+    
+   // setMessage(hit.toString(), context);
+
+
+
+
+          final Workbook workbook = Workbook();
+          //Accessing via index
+          final Worksheet sheet = workbook.worksheets[0];
+          //Datetime h=DateTime.fromMillisecondsSinceEpoch();
+          const String excelFile = 'Purchase Request';
+
+              sheet.getRangeByName('A4:C4').cellStyle.hAlign=HAlignType.center;
+
+              sheet.getRangeByIndex(1, 1).setText('All Students');
+              sheet.getRangeByIndex(2, 1).setText('Form 4 West'); // example class
+              sheet.getRangeByIndex(4, 1).setText('NO');
+              // set the titles for the subject results we want to fetch
+              sheet.getRangeByIndex(4, 2).setText('Item');
+              sheet.getRangeByIndex(4, 3).setText('Qty');
+
+       
+              //sheet.getRangeByIndex(5, 2).setText(prov.data_manual_prglobal[0].nama_item);
+              List<int> total=[];
+              total.clear();
+              for (var i = 0; i < hit; i++) {
+              int h=hit+1; 
+              total.add(int.parse(prov.data_manual_prglobal[i].qty_pr!));
+              sheet.getRangeByIndex(i + 5, 1).setText(h.toString());  
+              sheet.getRangeByIndex(i + 5, 1).cellStyle.hAlign=HAlignType.center;  
+              sheet.getRangeByIndex(i + 5, 2).setText(prov.data_manual_prglobal[i].nama_item!);
+              sheet.getRangeByIndex(i + 5, 2).cellStyle.hAlign=HAlignType.left;  
+              sheet.getRangeByIndex(i + 5, 3).setText(prov.data_manual_prglobal[i].qty_pr!);
+              sheet.getRangeByIndex(i + 5, 3).cellStyle.hAlign=HAlignType.center;  
+    
+              }
+              sheet.getRangeByIndex(hit + 6, 2).setText("Total QTy");  
+              sheet.getRangeByIndex(hit + 6, 3).setText(total.sum.toString());  
+
+      
+
+               // save the document in the downloads file
+        final List<int> bytes = workbook.saveAsStream();
+        // File('/storage/emulated/0/Download/$excelFile.xlsx').writeAsBytes(bytes);
+
+        final directory = await getApplicationDocumentsDirectory();
+        final imagePath = await File('${directory.path}/$excelFile.xlsx').create();
+        await imagePath.writeAsBytes(bytes);
+
+        await Share.shareXFiles(([XFile(imagePath.path)]));
+
+
+    // toast message to user
+    // setMessage("Download Succesfully", context);
+
+    //dispose the workbook
+    workbook.dispose();
+
+    EasyLoading.dismiss();
+
+}
 
   @override
   void initState() {
+    //getRefresh_Rpt_PR(pr_no!);
     EasyLoading.dismiss();
     super.initState();
   }
 
-  @override
-  void dispose() {
-    super.dispose();
-  }
+  // @override
+  // void dispose() {
+  //   super.dispose();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -144,46 +211,8 @@ class _InAppWebViewExampleScreenState extends State<InAppWebViewExampleScreen> {
           }, icon: Icon(Icons.print,size: 30,)),
           SizedBox(width: 5,),
           IconButton(onPressed: () {
-
-                 //Creating a workbook.
-          final Workbook workbook = Workbook();
-          //Accessing via index
-          final Worksheet sheet = workbook.worksheets[0];
-          const String excelFile = 'test_download';
-          
-              sheet.getRangeByIndex(1, 1).setText('All Students');
-              sheet.getRangeByIndex(2, 1).setText('Form 4 West'); // example class
-              sheet.getRangeByIndex(4, 1).setText('NO');
-              // set the titles for the subject results we want to fetch
-              sheet.getRangeByIndex(4, 2).setText('Item');
-              sheet.getRangeByIndex(4, 3).setText('Qty');
-
-              final prov=Provider.of<Alldata>(context,listen: false);
-              prov.getDetail_PR_Manual(pr_no!);
-              final int hit=prov.data_manual_prglobal.length;
-
-              for (var i = 0; i < hit; i++) {
-              sheet.getRangeByIndex(i + 5, 1).setText(i.toString());
-              sheet.getRangeByIndex(i + 5, 2).setText(prov.data_manual_prglobal[i].nama_item);
-              sheet.getRangeByIndex(i + 5, 2).setText(prov.data_manual_prglobal[i].qty_pr);
-              }
-
-              final List<int> bytes = workbook.saveAsStream();
-              File('/storage/emulated/0/Download/$excelFile.xlsx').writeAsBytes(bytes);
-
-              // toast message to user
-              setMessage("Download Succesfully ", context);
-
-              //dispose the workbook
-              workbook.dispose();
-              
-
-              
-           
-
-              // loop through the results to set the data in the excel sheet cells
-             
-
+          getRefresh_Rpt_PR(pr_no!);  
+        
             
             
           }, icon: Icon(Icons.exposure_outlined))

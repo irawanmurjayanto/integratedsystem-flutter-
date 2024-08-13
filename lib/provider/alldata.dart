@@ -443,10 +443,8 @@ notifyListeners();
               
               if (_newData['message']=='ok')
               {
-                 setMessage("Succesfully Get in", context);
-                // Future.delayed(Duration(milliseconds: 10000));
-                 
-                  
+                // setMessage("Succesfully Get in", context);
+                // Future.delayed(Duration(milliseconds: 10000));    
                  Navigator.push(context, MaterialPageRoute(builder:(context) => HomePage(),));
               }
           //  }
