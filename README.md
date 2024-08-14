@@ -7,3 +7,9 @@ Integrated System (Flutter Project) with barcode scanner(Smartphone Camera) and 
 ![alt text](https://github.com/irawanmurjayanto/integratedsystem-flutter-/blob/main/imagesrdm/mainmenu.gif?raw=true)
 
 
+Master Item/Barang
+![alt text](https://github.com/irawanmurjayanto/integratedsystem-flutter-/blob/main/imagesrdm/master/masterbarang.jpg?raw=true)
+
+
+
+
