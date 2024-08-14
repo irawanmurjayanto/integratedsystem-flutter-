@@ -12,7 +12,10 @@ Master Item/Barang
 
 
 Purchase Request
-![alt text](https://github.com/irawanmurjayanto/integratedsystem-flutter-/blob/main/imagesrdm/master/masterbarang.jpg?raw=true)
+
+![alt text](https://github.com/irawanmurjayanto/integratedsystem-flutter-/blob/main/imagesrdm/master/pr_list.jpg?raw=true)
+![alt text](https://github.com/irawanmurjayanto/integratedsystem-flutter-/blob/main/imagesrdm/master/pr_form.jpg?raw=true)
+![alt text](https://github.com/irawanmurjayanto/integratedsystem-flutter-/blob/main/imagesrdm/master/pr_print.jpg?raw=true)
 
 
 
