@@ -177,23 +177,23 @@ class _List_PurchaseRequest_formState extends State<List_PurchaseRequest_form> {
                               children: [    
                               
 
-                              Row(
+                              Column(
                               //  mainAxisAlignment: MainAxisAlignment.end,
                                 children: [
 
                                   
                                 Container(
                                 padding:EdgeInsets.all(5),
-                                color: Colors.blue,  
-                                child:Text(DateFormat('dd-MMM-yyyy').format(DateTime.parse(prov_list_pr.list_pr_detailglobal[i].tgl_pr!)),style: TextStyle(color: Colors.white),),  
+                               // color: Colors.blue,  
+                                child:Text(DateFormat('dd-MMM-yyyy').format(DateTime.parse(prov_list_pr.list_pr_detailglobal[i].tgl_pr!)),style: TextStyle(color: Colors.black,fontSize: 16,fontWeight:FontWeight.bold),),  
                               ),
 
                                SizedBox(width:3),
                                //dept
                                 Container(
                                 padding:EdgeInsets.all(5),
-                                color: Colors.blue,
-                                child:Text(prov_list_pr.list_pr_detailglobal[i].dept_pr!,style: TextStyle(color: Colors.white),),  
+                               // color: Colors.blue,
+                                child:Text(prov_list_pr.list_pr_detailglobal[i].dept_pr!,style: TextStyle(color: Colors.black),),  
                               ), 
                                 ]
                               ),
@@ -287,7 +287,7 @@ class _List_PurchaseRequest_formState extends State<List_PurchaseRequest_form> {
           border: OutlineInputBorder(      
             borderRadius: BorderRadius.circular(5),
             borderSide: BorderSide(width: 5,color: Colors.black,style: BorderStyle.solid)),
-          label: Text("PR NO Search",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),)
+          label: Text("PR NO Search",style: TextStyle(fontSize: 12,fontWeight: FontWeight.bold),)
           
         ),
          onChanged: (value) {

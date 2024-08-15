@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 
-void setMessage(String pesan,BuildContext context){
+void setMessage(String pesan,BuildContext context) async{
   final kirim =  SnackBar(content:Text(pesan,style: TextStyle(fontSize: 20,color: Colors.white),textAlign: TextAlign.center,),
   behavior: SnackBarBehavior.floating,
  
@@ -16,13 +16,13 @@ void setMessage(String pesan,BuildContext context){
   ),
   );
   
-  ScaffoldMessenger.of(context).showSnackBar(kirim);
+   ScaffoldMessenger.of(context).showSnackBar(kirim);
    
 
 }
 
 
-void setWarning(String pesan,BuildContext context){
+void setWarning(String pesan,BuildContext context) async{
   final kirim =  SnackBar(content:Text(pesan,style: TextStyle(fontSize: 20,color: Colors.white),textAlign: TextAlign.center,),
   behavior: SnackBarBehavior.floating,
  
