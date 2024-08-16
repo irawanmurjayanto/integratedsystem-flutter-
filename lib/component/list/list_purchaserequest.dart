@@ -100,7 +100,7 @@ class _List_PurchaseRequest_formState extends State<List_PurchaseRequest_form> {
 
                       return Container(
                         
-                           margin: EdgeInsets.only(left: 5,right: 5,bottom: 5),
+                           margin: EdgeInsets.only(left: 15,right: 15,bottom: 7),
                         padding: EdgeInsets.only(left: 5,top:5,bottom: 5),
                         decoration: BoxDecoration(
                           border: Border.all(style: BorderStyle.solid,width: 1,color: Colors.black54),
@@ -274,7 +274,7 @@ class _List_PurchaseRequest_formState extends State<List_PurchaseRequest_form> {
   Widget EditSearch(TextEditingController CariKata){
     return Container(//padding: EdgeInsets.all(2),
     
-    margin: EdgeInsets.only(left: 5,right: 5,bottom: 5,top: 10),
+    margin: EdgeInsets.only(left: 10,right: 10,bottom: 5,top: 10),
       decoration: BoxDecoration(
         image: DecorationImage(image: AssetImage("assets/images/sch1.png"),fit: BoxFit.cover),
         gradient: LinearGradient(colors:[Colors.white,Colors.cyan])

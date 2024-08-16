@@ -290,6 +290,7 @@ final box=GetStorage();
 
             SingleChildScrollView(
               child: Container(
+                margin: EdgeInsets.all(10),
                 height: MediaQuery.of(context).size.height/2,
                  decoration: BoxDecoration(
                   color: Colors.white70,
@@ -482,7 +483,7 @@ Provider.of<Alldata>(context,listen: false).getList_Dept();
         child: Column(
           children: [
             Container(
-              margin: EdgeInsets.all(5),
+              margin: EdgeInsets.all(10),
            
               decoration: BoxDecoration(
                 
@@ -537,7 +538,7 @@ Provider.of<Alldata>(context,listen: false).getList_Dept();
       decoration: BoxDecoration(
          
         borderRadius: BorderRadius.circular(10),
-        border: Border.all(color: Colors.black12,width: 3)
+      //  border: Border.all(color: Colors.black12,width: 3)
       ),
 
       child: FutureBuilder(future: Provider.of<Alldata>(context,listen: false).getDetail_PR_Manual(noprtemp), 
@@ -555,10 +556,10 @@ Provider.of<Alldata>(context,listen: false).getList_Dept();
 
                   return Container(
                     padding: EdgeInsets.all(5),
-                    margin: EdgeInsets.only(bottom:2),
+                    margin: EdgeInsets.only(bottom:5,left:10,right:10),
                     decoration: BoxDecoration(
                       gradient: LinearGradient(colors:[Colors.white,Colors.white24]),
-                      borderRadius: BorderRadius.circular(2),
+                      borderRadius: BorderRadius.circular(5),
                       border: Border.all(width: 2,style: BorderStyle.solid)
                     ),
                       child: 
