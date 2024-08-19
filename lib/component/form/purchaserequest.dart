@@ -35,6 +35,15 @@ class PurchaseRequest_form extends StatefulWidget {
 
 class _PurchaseRequestListState extends State<PurchaseRequest_form> {
 
+  final String?tipe;
+  final String? pr_no;
+  final String? dept_pr;
+  final String? tgl_pr;
+  
+
+  _PurchaseRequestListState({required this.tipe,required this.pr_no,required this.dept_pr,required this.tgl_pr});
+
+
 final box=GetStorage();
     
 //codenya sama dengan yang diatas, pembedanya di bagian ScanMode
@@ -111,13 +120,6 @@ final box=GetStorage();
     super.didChangeDependencies();
   }
 
-  final String?tipe;
-  final String? pr_no;
-  final String? dept_pr;
-  final String? tgl_pr;
-  
-
-  _PurchaseRequestListState({required this.tipe,required this.pr_no,required this.dept_pr,required this.tgl_pr});
 
   final _prno_temp =TextEditingController();
   final _cari_item_pr=TextEditingController();
@@ -473,7 +475,7 @@ Provider.of<Alldata>(context,listen: false).getList_Dept();
         // }, icon: Icon(Icons.image_sharp,size: 35,)),
       ],
       ),
-      
+      backgroundColor: Colors.grey[300],
       body:
      
       
@@ -677,7 +679,7 @@ Provider.of<Alldata>(context,listen: false).getList_Dept();
       margin: EdgeInsets.only(right: 5),
       child: 
       Row(
-        mainAxisAlignment: MainAxisAlignment.end,
+        mainAxisAlignment: MainAxisAlignment.center,
       children: [
 
           

@@ -1,6 +1,7 @@
 import 'package:barcode_inventory_new/component/form/masterbarang.dart';
 import 'package:barcode_inventory_new/component/form/pos.dart';
 import 'package:barcode_inventory_new/component/list/list_masterbarang.dart';
+import 'package:barcode_inventory_new/component/list/list_purchaseorder.dart';
 import 'package:barcode_inventory_new/component/list/list_purchaserequest.dart';
 import 'package:barcode_inventory_new/component/message/getwarning.dart';
 import 'package:barcode_inventory_new/login.dart';
@@ -171,6 +172,8 @@ class _MainMenuState extends State<MainMenu> {
 
                     
                     //menu Purchase Order
+                InkWell(
+                  child:     
                 Container(
                   height: 65,
                   width: 65,
@@ -188,7 +191,10 @@ class _MainMenuState extends State<MainMenu> {
                        Text("Purchase Order",style: TextStyle(fontSize: 6,fontWeight: FontWeight.bold),),  
                     ],
                   )),
-
+                  onTap:() {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => List_PurchaseOrder(),));
+                  },
+                ), 
                      
                     //menu Good Receive
                 Container(
@@ -211,8 +217,8 @@ class _MainMenuState extends State<MainMenu> {
 
                   ],
                 ) , 
-               
-              
+            
+                 
 
                   SizedBox(height: 10,),
 
