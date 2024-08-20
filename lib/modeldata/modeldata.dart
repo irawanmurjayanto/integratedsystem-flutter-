@@ -191,4 +191,22 @@ List_MasterBarang({ this.id,this.kode,this.nama,this.barcode,this.unititem,this.
      
     }
 
+    class Vendor_PO{
+      String?idno;
+      String?vd_code;
+      String?vd_name;
+      String?alamat;
+
+      Vendor_PO({this.idno,this.vd_code,this.vd_name,this.alamat});
+
+      factory Vendor_PO.fromJson(Map<String,dynamic> json)
+      {
+        return Vendor_PO(
+          idno:json['idno']
+          
+          );
+      }
+      
+    }
+
 
