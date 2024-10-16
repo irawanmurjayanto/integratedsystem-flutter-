@@ -1,8 +1,8 @@
 import 'package:barcode_inventory_new/component/message/getwarning.dart';
 import 'package:barcode_inventory_new/component/report/rpt_pr_byprno..dart';
-import 'package:barcode_inventory_new/component/report/rptscreen.dart';
+import 'package:barcode_inventory_new/component/report/rptscreen_ex.dart';
 import 'package:barcode_inventory_new/component/report/rptscreen2.dart';
-import 'package:barcode_inventory_new/component/report/rptscreen3.dart';
+import 'package:barcode_inventory_new/component/report/rptscreen3_ex.dart';
 import 'package:barcode_inventory_new/main.dart';
 // import 'package:barcode_inventory_new/component/report/rpt_pr_byprno.dart';
 import 'package:barcode_inventory_new/provider/alldata.dart';
